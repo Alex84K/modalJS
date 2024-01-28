@@ -1,14 +1,10 @@
 const library = [];
 //isbn;title;author;year
-let inputData = prompt('Enter book data separate by ";"');
+let inputData = confirm('Want to add a book to our library? ";"');//Changed it here prompt -> confirm
 while (inputData) {
     //TODO create and add to library only unique book by isbn
-    console.log(inputData);
-    const splArr = inputData.split(';');
-    console.log(splArr);
 
-    let newBook = new Book(splArr[0], splArr[1], splArr[2], splArr[3]);
-
+    let newBook = initObj();
     if(library.length === 0) {
         library.push(newBook);
     } else {
@@ -18,23 +14,27 @@ while (inputData) {
             alert('No! There is already such a book!!!');
         }
     }
-
-
-    inputData = prompt('Enter book data separate by ";"');
+    
+    
+    inputData = confirm('Enter book data separate by ";"');//Changed it here prompt -> confirm
+    printLibrary(library);
     if(!inputData) {
         break;
     }
-    console.log(library);
 }
 
-printLibrary(library);
+//printLibrary(library);
+console.log(printLibrary(library));
 
 function printLibrary(library) {
     //TODO print all books to console
+
+    for(let i = 0; i < library.length; i++) {
+        library[i].toString;
+    }
 }
 
 function findBook(library, isbn) {
-    //TODO return index if book exists, otherwise return -1
     let is = isbn;
     //TODO return index if book exists, otherwise return -1
     for(let i = 0; i < library.length; i++) {
@@ -48,13 +48,22 @@ function findBook(library, isbn) {
     }
 }
 
-
 function Book(isbn, title, author, year) {
-    this.isbn = isbn;
+    this.isbn = +isbn;
     this.title = title;
     this.author = author;
     this.year = +year;
     this.toString = function () {
-        return `ISB: ${this.isbn}, ...`; // TODO Complete toString
+        return `ISB: ${this.isbn}, ${this.title}, ${this.author}, ${this.year}`; // TODO Complete toString
     }
+}
+
+function initObj() {
+    let isb = prompt('ISBN');
+    let author = prompt('BookName');
+    let bookName = prompt('Author');
+    let year = prompt('Year');
+
+    const book = new Book(isb, author, bookName, year);
+    return book;
 }
