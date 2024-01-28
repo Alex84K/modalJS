@@ -31,6 +31,9 @@ printLibrary(library);
 
 function printLibrary(library) {
     //TODO print all books to console
+    for(let i = 0; i < library.length; i++) {
+        library[i].toString;
+    }
 }
 
 function findBook(library, isbn) {
@@ -55,6 +58,6 @@ function Book(isbn, title, author, year) {
     this.author = author;
     this.year = +year;
     this.toString = function () {
-        return `ISB: ${this.isbn}, ...`; // TODO Complete toString
+        return `ISB: ${this.isbn}, ${this.title}, ${this.author}, ${this.year}`; // TODO Complete toString
     }
 }
